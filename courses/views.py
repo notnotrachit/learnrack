@@ -168,7 +168,7 @@ def notes_to_pdf(title,text):
     headersList = {
     "Accept": "*/*",
     "User-Agent": "Thunder Client (https://www.thunderclient.com)",
-    "apy-token": "APT03L9c9FXetsZk6RtFEF9pH7VhZQE2j0mPitwfSCX7ZHDou7QRz",
+    "apy-token": f"{os.getenv('APY_TOKEN')}",
     "Content-Type": "application/json" 
     }
 
@@ -183,3 +183,10 @@ def notes_to_pdf(title,text):
     result = response.read()
     d=eval(result.decode("utf-8"))
     return d['data']
+
+
+@login_required
+def dashboard(request):
+    user = request.user
+    courses = Course.objects.filter(user=user)
+    return render(request, 'dashboard.html', {'user':user, 'courses':courses})
