@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block 'content' %}
 <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+
 <div class="login-box">
     <h2>ADD PLAYLIST</h2>
     <p>paste the url of the playlist you want to add</p>
@@ -32,18 +33,21 @@
       padding:0;
       font-family: 'Righteous', cursive;
       background-image: url("/poly2.svg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
     }
 
     .login-box {
       position: absolute;
-      top: 50%;
+      top: 43%;
       left: 50%;
       width: 400px;
       padding: 40px;
       transform: translate(-50%, -50%);
       background: rgba(0, 0, 0, 0.5);
       box-sizing: border-box;
-      box-shadow: 0 15px 25px rgba(148, 155, 108, 0.6);
+      box-shadow: 0 15px 25px #68d9ff;
       border-radius: 10px;
     }
 
@@ -192,13 +196,18 @@
       }
     }
     p{
-        color: #03e9f4;
+        color: #009198;
         font-size: 12px;
         left: 50%;
         right: 50%;
+        padding-top: 0%;
+        padding-bottom: 5%;
+        top: 0;
 
     }
-
+    h4{
+        color: #68d9ff;
+    }
   </style>
 
 
