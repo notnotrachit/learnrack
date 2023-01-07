@@ -5,7 +5,7 @@
     <div id="video" class="w-[60%] m-10 bg-[#111827] rounded-lg">
         <iframe class="w-full" height="600" src="https://www.youtube.com/embed/{{video_id}}" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         <a href="{% url 'watched_video' course_id=course.id video_id=video_id%}">
-        <button class="text-white px-5 py-2 text-2xl bg-blue-800 rounded mt-5 ml-[86%]"> <a href="{% url 'course_notes' course_id=course.id %}">Next Video </a> </button>
+        <button class="text-white px-5 py-2 text-2xl bg-blue-800 rounded mt-5 ml-[86%]"> <a href="{% url 'watched_video' course_id=course.id video_id=video_id%}">Next Video </a> </button>
         </a>
     </div>
     <div class="w-[27%] m-10 bg-gray-500/40 rounded-lg px-5">

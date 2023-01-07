@@ -25,11 +25,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-qk@f*qu6ivwlj(lebvbr%yx7q7p3#$5oz(vyb8g&c_w(fu=%vw"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
-
-
+ALLOWED_HOSTS = ['www.learnrack.study','*']
+CORS_ORIGIN_WHITELIST=[' https://www.learnrack.study',' http://www.learnrack.study']
+CSRF_TRUSTED_ORIGINS=['https://www.learnrack.study']
 # Application definition
 
 INSTALLED_APPS = [

@@ -4,3 +4,4 @@ python-dotenv
 google-api-python-client
 whitenoise
 psycopg2-binary
+tzdata

@@ -192,6 +192,7 @@ def notes_update(request):
 
 
 def notes_to_pdf(title,text):
+    text=text.replace("\n","<br>")
     conn = http.client.HTTPSConnection("api.apyhub.com")
 
     headersList = {
@@ -207,7 +208,7 @@ def notes_to_pdf(title,text):
 
     })
 
-    conn.request("POST", f"/generate/html-content/pdf-url?output=.pdf", payload, headersList)
+    conn.request("POST", "/generate/html-content/pdf-url?output=learnrack_notes.pdf", payload, headersList)
     response = conn.getresponse()
     result = response.read()
     d=eval(result.decode("utf-8"))
