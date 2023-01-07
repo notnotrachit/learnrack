@@ -35,16 +35,16 @@ def video_list(PLAYLIST_ID):
     return video_ids
 
 
-#@login_required
+@login_required
 def new_course_page(request):
     return render(request, 'new_course.html')
 
 @login_required
 def new_course(request):
     user=request.user
+    print(request.POST)
     if request.method=='POST':
         url=request.POST['url']
-        tag=request.POST['tag']
         playlist_id=url.replace('https://www.youtube.com/playlist?list=', '')
         video_ids=video_list(playlist_id)
         request = youtube.playlists().list(
@@ -65,7 +65,7 @@ def new_course(request):
             channel_name=channel_name,
             thumbnail_url=thumbnail_url,
             video_ids=video_ids)
-        return HttpResponse('success')
+        return redirect('dashboard')
     else:
         return redirect('home')
 

@@ -5,12 +5,13 @@
 <div class="login-box">
     <h2>ADD PLAYLIST</h2>
     <p>Enter <span class="you">You</span><span class="tube">Tube</span> playlist URL</p>
-    <form>
+    <form action="{% url 'new_course_add' %}" method="POST">
       <div class="user-box">
-        <input type="text" name="" required="">
+        {% csrf_token %}
+        <input type="text" name="url" id="url" required>
         <label>URL</label>
       </div><center>
-      <button class="a" href="#">
+      <button type="submit" class="a" href="#">
         <span></span>
         <span></span>
         <span></span>
