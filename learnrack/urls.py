@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .views import dashboard
-from courses.views import new_course_page, new_course
+from courses.views import new_course_page, new_course, course_notes
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -24,4 +24,5 @@ urlpatterns = [
     path('dashboard/', dashboard, name='dashboard'),
     path('new_course/', new_course_page, name='new_course_page'),
     path('new_course_add/', new_course, name='new_course_add'),
+    path('courses/<int:course_id>/notes', course_notes, name='course_notes'),
 ]

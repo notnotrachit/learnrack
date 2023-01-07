@@ -116,6 +116,15 @@ def course_update(request, course_id):
         return render(request, 'course_update.html', {'course':course})
 
 @login_required
+def course_notes(request, course_id):
+    course=Course.objects.get(id=course_id)
+    if request.user==course.user:
+        return render(request, 'course_notes.html', {'course':course})
+    else:
+        return redirect('dashboard')
+
+
+@login_required
 def video_watch(request, course_id):
     course=Course.objects.get(id=course_id)
     if request.method=='POST':
