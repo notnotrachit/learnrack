@@ -8,7 +8,7 @@ from dotenv import load_dotenv
 load_dotenv()
 import http.client
 import json
-youtube = build('youtube', 'v3', developerKey=os.environ.get('YOUTUBE_API_KEY'))
+youtube = build('youtube', 'v3', developerKey=os.environ.get('YOUTUBE_API_KEY'),static_discovery=False)
 # Create your views here.
 def video_list(PLAYLIST_ID):
     request_params = {
