@@ -3,3 +3,4 @@ django-allauth
 python-dotenv
 google-api-python-client
 whitenoise
+psycopg2
