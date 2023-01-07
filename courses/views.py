@@ -125,16 +125,18 @@ def course_notes(request, course_id):
         return redirect('dashboard')
 
 @login_required
-def video_watch(request, course_id):
+def video_watch(request, course_id, video_id):
     course=Course.objects.get(id=course_id)
-    if request.method=='POST':
-        video_id=request.POST['video_id']
+    if request.user==course.user:
         if video_id not in course.watched_videos:
             course.watched_videos.append(video_id)
             course.save()
-        return HttpResponse('success')
+            next_video_id=course.video_ids[course.video_ids.index(video_id)+1]
+            return redirect('video_page', course_id=course_id, video_id=next_video_id)
+        return redirect('dashboard ')
     else:
-        return redirect('home')
+        return redirect('dashboard')
+
 
 @login_required
 def video_page(request, course_id, video_id):
