@@ -4,19 +4,19 @@
 
 <div class="login-box">
     <h2>ADD PLAYLIST</h2>
-    <p>paste the url of the playlist you want to add</p>
+    <p>Enter <span class="you">You</span><span class="tube">Tube</span> playlist URL</p>
     <form>
       <div class="user-box">
         <input type="text" name="" required="">
         <label>URL</label>
       </div><center>
-      <a href="#">
+      <button class="a" href="#">
         <span></span>
         <span></span>
         <span></span>
         <span></span>
         Submit
-      </a></center>
+      </button></center>
     </form>
   </div>
 
@@ -88,7 +88,7 @@
       font-size: 12px;
     }
 
-    .login-box form a {
+    .login-box form .a {
       position: relative;
       display: inline-block;
       padding: 10px 20px;
@@ -102,7 +102,7 @@
       letter-spacing: 4px
     }
 
-    .login-box a:hover {
+    .login-box .a:hover {
       background: #206a6d;
       color: rgb(0, 0, 0);
       border-radius: 5px;
@@ -112,12 +112,12 @@
                   0 0 1px #03e9f4;
     }
 
-    .login-box a span {
+    .login-box .a span {
       position: absolute;
       display: block;
     }
 
-    .login-box a span:nth-child(1) {
+    .login-box .a span:nth-child(1) {
       top: 0;
       left: -100%;
       width: 100%;
@@ -135,7 +135,7 @@
       }
     }
 
-    .login-box a span:nth-child(2) {
+    .login-box .a span:nth-child(2) {
       top: -100%;
       right: 0;
       width: 2px;
@@ -154,7 +154,7 @@
       }
     }
 
-    .login-box a span:nth-child(3) {
+    .login-box .a span:nth-child(3) {
       bottom: 0;
       right: -100%;
       width: 100%;
@@ -173,7 +173,7 @@
       }
     }
 
-    .login-box a span:nth-child(4) {
+    .login-box .a span:nth-child(4) {
       bottom: -100%;
       left: 0;
       width: 2px;
@@ -204,6 +204,16 @@
     h4{
         color: #68d9ff;
     }
+    .a{
+        background-color:rgba(0, 0, 0, 0);
+        border-color: transparent;
+    }
+    /* .tube{
+        color: rgba(231, 49, 49, 0.589);
+    }
+    .you{
+        color: rgba(255, 255, 255, 0.662);
+    } */
   </style>
 
 
