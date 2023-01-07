@@ -11,21 +11,21 @@
             <center><span class="text-white">Previous Video</span></center>
             </div>
         {% else %}
-        <a href="https://www.youtube.com/watch?v={{previous_video}}">
+        <a href="{% url 'video_page' course_id=course.id video_id=previous_video %}">
             <div class="relative bg-blue-700/30 p-5 rounded-lg w-[500] h-[270]">
             <img style="object-fit:cover;object-position:cover;" class="rounded-lg w-full h-full " src="https://i.ytimg.com/vi/{{previous_video}}/hqdefault.jpg" alt="image1">
             <center><span class="text-white">Previous Video</span></center>
             </div>
         </a>
         {% endif %}
-        <a href="https://www.youtube.com/watch?v={{current_video}}">
+        <a href="{% url 'video_page' course_id=course.id video_id=current_video %}">
             <div class="bg-blue-200/70 p-5 rounded-lg w-[560] h-[315]">
             <img style="object-fit:cover;object-position:cover;" class="rounded-lg w-full h-full " src="https://i.ytimg.com/vi/{{current_video}}/hqdefault.jpg" alt="image2">
             <center><span class="text-white">Continue Watching</span></center>        
             </div>
         <a>
         {%if 'next_video' %}
-        <a href="https://www.youtube.com/watch?v={{next_video}}">
+        <a href="{% url 'video_page' course_id=course.id video_id=next_video %}">
             <div class="bg-blue-700/30 p-5 rounded-lg w-[500] h-[270]">
             <img style="object-fit:cover;object-position:cover;" class="rounded-lg w-full h-full " src="https://i.ytimg.com/vi/{{next_video}}/hqdefault.jpg" alt="image3">
             <center><span class="text-white">Upcoming Video</span></center>

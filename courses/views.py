@@ -138,11 +138,11 @@ def video_watch(request, course_id):
 
 @login_required
 def video_page(request, course_id, video_id):
-    # course=Course.objects.get(id=course_id)
-    # if video_id in course.video_ids:
-    #     return render(request, 'video.html', {'course':course, 'video_id':video_id})
-    # else:
-    #     return redirect('dashboard')
+    course=Course.objects.get(id=course_id)
+    if video_id in course.video_ids:
+        return render(request, 'video.html', {'course':course, 'video_id':video_id})
+    else:
+        return redirect('dashboard')
     return render(request, 'video.html', {'course_id':course_id, 'video_id':video_id})
 
 @login_required
