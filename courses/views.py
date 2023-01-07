@@ -35,7 +35,7 @@ def video_list(PLAYLIST_ID):
     return video_ids
 
 
-@login_required
+#@login_required
 def new_course_page(request):
     return render(request, 'new_course.html')
 

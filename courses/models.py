@@ -17,4 +17,9 @@ class Course(models.Model):
     updated_at=models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.title
+    
+    def complete_percentage(self):
+        if len(self.video_ids) == 0:
+            return 0
+        return round(len(self.watched_videos)/len(self.video_ids)*100, 2)
 
