@@ -123,7 +123,6 @@ def course_notes(request, course_id):
     else:
         return redirect('dashboard')
 
-
 @login_required
 def video_watch(request, course_id):
     course=Course.objects.get(id=course_id)
@@ -145,26 +144,33 @@ def video_page(request, course_id, video_id):
         return redirect('home')
 
 @login_required
-def notes_update(request,course_id):
+def notes_update(request):
+    course_id=request.POST['course_id']
     course=Course.objects.get(id=course_id)
     if request.method=='POST':
-        notes=request.POST['notes']
-        course.notes=notes
-        course.save()
-        return HttpResponse('success')
+        if request.user==course.user:
+            notes=request.POST['textarea']
+            course.notes=notes
+            course.save()
+            if request.POST['sub']=="download":
+                ret_url=notes_to_pdf(course.title,course.notes)
+                return redirect(ret_url)
+            return redirect(request.META.get('HTTP_REFERER', f'/courses/{course_id}/notes/'))
+        else:
+            return redirect('dashboard')
     else:
-        return redirect('home')
+        return redirect('dashboard')
 
 
-def notes_to_pdf(text):
-
+def notes_to_pdf(title,text):
+    ftext="<h1>"+title+"</h1>"+text
     url = 'https://api.apyhub.com/generate/html-content/pdf-file?output=test-sample.pdf'
     headers = {
-        'apy-token': '',
+        'apy-token': os.getenv('API_TOKEN'),
         'Content-Type': 'application/json',
     }
     data = {
-        'content': text,
+        'content': ftext,
     }
-
     response = requests.post(url, headers=headers, json=data)
+    return response.json()['data']
