@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import login_required
 import os
 from dotenv import load_dotenv
 load_dotenv()
+import requests
 
 youtube = build('youtube', 'v3', developerKey=os.environ.get('YOUTUBE_API_KEY'))
 # Create your views here.
@@ -144,3 +145,17 @@ def notes_update(request,course_id):
         return HttpResponse('success')
     else:
         return redirect('home')
+
+
+def notes_to_pdf(text):
+
+    url = 'https://api.apyhub.com/generate/html-content/pdf-file?output=test-sample.pdf'
+    headers = {
+        'apy-token': '',
+        'Content-Type': 'application/json',
+    }
+    data = {
+        'content': text,
+    }
+
+    response = requests.post(url, headers=headers, json=data)
