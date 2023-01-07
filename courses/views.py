@@ -67,14 +67,33 @@ def new_course(request):
             video_ids=video_ids)
         return HttpResponse('success')
     else:
-        return redirect('dashboard')
+        return redirect('home')
 
 
 @login_required
 def course_detail(request, course_id):
     course=Course.objects.get(id=course_id)
     if request.user==course.user:
-        return render(request, 'course_detail.html', {'course':course})
+        
+        
+        
+        if video_id in course.video_ids:
+            index=course.video_ids.index(video_id)
+            if index==0:
+                return redirect('home')
+            else:
+                previous_video_id=course.video_ids[index-1]
+                return redirect('video_page', course_id=course_id, video_id=previous_video_id)
+        if video_id in course.video_ids:
+            index=course.video_ids.index(video_id)
+            if index==len(course.video_ids)-1:
+                return redirect('home')
+            else:
+                next_video_id=course.video_ids[index+1]
+                return redirect('video_page', course_id=course_id, video_id=next_video_id)
+        if course.watched_videos:
+            last_watched_video=course.watched_videos[-1]
+            return redirect('video_page', course_id=course_id, video_id=last_watched_video)
     else:
         return redirect('dashboard')
 
