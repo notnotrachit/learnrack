@@ -6,8 +6,8 @@ from django.contrib.auth.decorators import login_required
 import os
 from dotenv import load_dotenv
 load_dotenv()
-import requests
-
+import http.client
+import json
 youtube = build('youtube', 'v3', developerKey=os.environ.get('YOUTUBE_API_KEY'))
 # Create your views here.
 def video_list(PLAYLIST_ID):
@@ -163,14 +163,23 @@ def notes_update(request):
 
 
 def notes_to_pdf(title,text):
-    ftext="<h1>"+title+"</h1>"+text
-    url = 'https://api.apyhub.com/generate/html-content/pdf-file?output=test-sample.pdf'
-    headers = {
-        'apy-token': os.getenv('API_TOKEN'),
-        'Content-Type': 'application/json',
+    conn = http.client.HTTPSConnection("api.apyhub.com")
+
+    headersList = {
+    "Accept": "*/*",
+    "User-Agent": "Thunder Client (https://www.thunderclient.com)",
+    "apy-token": "APT03L9c9FXetsZk6RtFEF9pH7VhZQE2j0mPitwfSCX7ZHDou7QRz",
+    "Content-Type": "application/json" 
     }
-    data = {
-        'content': ftext,
-    }
-    response = requests.post(url, headers=headers, json=data)
-    return response.json()['data']
+
+    payload = json.dumps({
+
+        "content":f" <html> <body> <h1> {title} </h1> {text} </body> </html> "
+
+    })
+
+    conn.request("POST", f"/generate/html-content/pdf-url?output=.pdf", payload, headersList)
+    response = conn.getresponse()
+    result = response.read()
+    d=eval(result.decode("utf-8"))
+    return d['data']
