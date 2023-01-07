@@ -1,14 +1,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
 <body>
     <div class="wrap">
-        <button class="button">LogIn/SignUp</button>
+      <center>
         <h1 class="title">LearnRack</h1>
+        <form action="accounts/auth0/login/" method="POST">
+          {% csrf_token %}
+        <button type="submit" class="button">LogIn/SignUp</button>
+        </form>
+      </center>
       </div>
 </body>
 
 <style>
     html, body {
-  height: 100%;
   background-image: url("poly2.svg");
       background-position: center;
       background-repeat: no-repeat;
@@ -39,9 +43,6 @@
   transition: all 0.3s ease 0s;
   cursor: pointer;
   outline: none;
-  position: relative;
-  top: -3%;
-  left: 6%;
   }
 
 .button:hover {
@@ -53,9 +54,6 @@
 .title{
     font-family: 'Righteous', cursive;
     color: white;
-    position: relative;
-    top: -15%;
-    left: -6.1%;
 }
     
 </style>

@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from courses.views import new_course_page, new_course, course_notes, notes_update, dashboard, video_page, course_detail, video_watch
-
+from .views import index
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('accounts/', include('allauth.urls')),
@@ -28,4 +28,5 @@ urlpatterns = [
     path('courses/<int:course_id>/video/<video_id>', video_page, name='video_page'),
     path('courses/<int:course_id>', course_detail, name='course_detail'),
     path('courses/<int:course_id>/watched/<video_id>', video_watch, name='watched_video'),
+    path('', index, name='index')
 ]

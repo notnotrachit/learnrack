@@ -42,11 +42,11 @@
         <div class="hidden w-full md:block md:w-auto" id="navbar-dropdown">
           <ul class="flex flex-col p-4 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium md:border-0 md:bg-white bg-gray-800 md:bg-gray-900 border-gray-700">
             <li>
-              <a href="#" class="text-2xl block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:p-0 md:text-white bg-blue-600 md:bg-transparent" aria-current="page">Dashboard</a>
+              <a href="#" class="text-2xl block py-2 pl-3 pr-4 rounded md:hover:bg-transparent md:border-0 md:p-0 text-gray-400 md:hover:text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent" aria-current="page">Dashboard</a>
             </li>
     
             <li>
-              <a href="#" class=" text-2xl block py-2 pl-3 pr-4 rounded md:hover:bg-transparent md:border-0 md:p-0 text-gray-400 md:hover:text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent">New Course</a>
+              <a href="{% url 'new_course_page' %}" class=" text-2xl block py-2 pl-3 pr-4 rounded md:hover:bg-transparent md:border-0 md:p-0 text-gray-400 md:hover:text-white hover:bg-gray-700 hover:text-white md:hover:bg-transparent">New Course</a>
             </li>
             <li>
                 <button id="dropdownNavbarLink" data-dropdown-toggle="dropdownNavbar" class="text-2xl flex items-center justify-between w-full py-2 pl-3 pr-4 font-medium rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 md:w-auto text-gray-400 hover:text-white focus:text-white border-gray-700 hover:bg-gray-700 md:hover:bg-transparent">
@@ -56,7 +56,12 @@
                 <div id="dropdownNavbar" class="text-2xl z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
     
                     <div class="py-1">
-                      <a href="#" class="text-xl block px-4 py-2 text-white text-sm hover:bg-gray-100 hover:bg-gray-600 hover:text-white">Sign out</a>
+                      
+                    <form method="post" action="/accounts/logout/">
+                        {% csrf_token %}
+                      
+                      <button type="submit"class="text-xl block px-4 py-2 text-white text-sm hover:bg-gray-100 hover:bg-gray-600 hover:text-white">Sign out</button>
+                    </form>
                     </div>
                 </div>
             </li>

@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-qk@f*qu6ivwlj(lebvbr%yx7q7p3#$5oz(vyb8g&c_w(fu=%vw"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -98,7 +98,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "learnrack.wsgi.application"
 
-
+LOGIN_REDIRECT_URL = "dashboard"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 

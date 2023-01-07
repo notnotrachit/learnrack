@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from courses.models import Course
 from googleapiclient.discovery import build
-from django.contrib.auth.decorators import login_required
+from learnrack.decorators import login_required
 import os
 from dotenv import load_dotenv
 load_dotenv()
