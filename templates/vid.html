@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block 'content' %}
+
+<div class="flex    ">
+    <div id="video" class="w-[60%] m-10 bg-[#111827] rounded-lg">
+        <iframe class="w-full" height="600" src="https://www.youtube.com/embed/{{video_id}}" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        <a href="{% url 'watched_video' course_id=course.id video_id=video_id%}">
+        <button class="text-white px-5 py-2 text-2xl bg-blue-800 rounded mt-5 ml-[86%]"> <a href="{% url 'course_notes' course_id=course.id %}">Next Video </a> </button>
+        </a>
+    </div>
+    <div class="w-[27%] m-10 bg-gray-500/40 rounded-lg px-5">
+        <center><h1 class="text-2xl text-white">Course Notes</h1></center>
+        <form action="{% url 'notes_update' %}" method="POST">
+        {% csrf_token %}
+        <textarea class="w-full h-[540] resize-none bg-gray-500 p-3" id="textarea" name="textarea">{{course.notes}}</textarea>
+        <input type="hidden" name="course_id" value="{{course.id}}">
+        <center>
+            <button id="sub" name="sub" value="save" class="text-white px-5 py-2 text-2xl bg-blue-800 rounded mt-5" type="submit">Save</button></center>
+        </form>
+    </div>
+</div>
+
+
+<div class="flex mt-2">
+    <div class="w-[60%] m-10 bg-gray-500/40 text-white p-2 rounded-lg text-5xl">
+        {{title}}
+        <hr class="border-1 border-white">
+        <span class="text-base font-thin font-mono"><p>{{description|linebreaks}}<p><span>
+    </div>
+    <div class="w-[27%] m-10 bg-gray-500/40 rounded-lg px-5">
+        <center><h1 class="text-2xl text-white">All Videos</h1></center>
+        <hr class="border-1 border-white mb-2">
+        <div>
+        {% for video in video_names %}
+        <div class="flex mb-2 my-10">
+        <a href="{% url 'video_page' course_id=course.id video_id=video.0 %}">
+            <div class="w-[168] h-[94] mr-2">
+        <img width="168" height="94" class="rounded-lg hover:scale-110 hover:rounded-none ease-in duration-100" src="https://i.ytimg.com/vi/{{video.0}}/mqdefault.jpg" alt="thumbnail"></div></a>
+        <a href="{% url 'video_page' course_id=course.id video_id=video.0 %}"><span class="text-white hover:text-[#5EE2D2] hover:underline">{{video.1}}</span></a>
+        </div>
+        {% endfor %}
+        </div>
+    </div>
+</div>
+
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+    textarea {
+        font-family: 'Shadows Into Light', cursive;
+        font-size: 30px;    
+    }
+
+</style>
+
+{% endblock %}

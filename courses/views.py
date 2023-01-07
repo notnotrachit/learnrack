@@ -142,7 +142,32 @@ def video_watch(request, course_id, video_id):
 def video_page(request, course_id, video_id):
     course=Course.objects.get(id=course_id)
     if video_id in course.video_ids:
-        return render(request, 'video.html', {'course':course, 'video_id':video_id})
+        request_f = youtube.videos().list(
+            part='id,snippet',
+            id=video_id
+        )
+        response = request_f.execute()
+        title = response['items'][0]['snippet']['title']
+        description = response['items'][0]['snippet']['description']
+        video_list=[]
+        init_in=course.video_ids.index(video_id)-5
+        if init_in<0:
+            init_in=0
+        final_in=course.video_ids.index(video_id)+5
+        for i in course.video_ids[init_in:final_in]:
+            request_f = youtube.videos().list(
+                part='id,snippet',
+                id=i
+            )
+            response = request_f.execute()
+            video_list.append((i,response['items'][0]['snippet']['title']))
+
+        return render(request, 'vid.html', {
+            'course':course,
+            'video_id':video_id,
+            'title':title,
+            'description':description,
+            'video_names':video_list,})
     else:
         return redirect('dashboard')
     return render(request, 'video.html', {'course_id':course_id, 'video_id':video_id})

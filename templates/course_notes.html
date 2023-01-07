@@ -223,7 +223,7 @@
 <form action="{% url 'notes_update' %}" method="POST">
   {% csrf_token %}
   <div class="w-5/6 justify-end flex">
-  <button type="submit" class="text-xl text-white hover:text-[#5EE2D2]">
+  <button type="submit" id="sub" name="sub" value="save" class="text-xl text-white hover:text-[#5EE2D2]">
     Save Changes
   </button><br></div>
   <textarea id="textarea" name="textarea" class="w-5/6 h-[63%] text-2xl p-5 backdrop-blur-xl bg-[#eaedd8]/60 ">{{ course.notes }}
