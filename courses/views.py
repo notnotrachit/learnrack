@@ -39,6 +39,7 @@ def new_course(request):
     user=request.user
     if request.method=='POST':
         url=request.POST['url']
+        tag=request.POST['tag']
         playlist_id=url.replace('https://www.youtube.com/playlist?list=', '')
         video_ids=video_list(playlist_id)
         request = youtube.playlists().list(
@@ -49,7 +50,17 @@ def new_course(request):
         title=response['items'][0]['snippet']['title']
         description=response['items'][0]['snippet']['description']
         thumbnail_url=response['items'][0]['snippet']['thumbnails']['high']['url']
-        course=Course.objects.create(url=url, playlist_id=playlist_id, user=user, title=title, description=description, thumbnail_url=thumbnail_url, video_ids=video_ids)
+        channel_name=response['items'][0]['snippet']['channelTitle']
+        course=Course.objects.create(
+            url=url,
+            playlist_id=playlist_id,
+            user=user,
+            title=title,
+            description=description,
+            channel_name=channel_name,
+            thumbnail_url=thumbnail_url,
+            video_ids=video_ids,
+            tag=tag)
         return HttpResponse('success')
     else:
         return redirect('home')
@@ -58,7 +69,10 @@ def new_course(request):
 @login_required
 def course_detail(request, course_id):
     course=Course.objects.get(id=course_id)
-    return render(request, 'course_detail.html', {'course':course})
+    if request.user==course.user:
+        return render(request, 'course_detail.html', {'course':course})
+    else:
+        return redirect('dashboard')
 
 @login_required
 def course_delete(request, course_id):
@@ -97,3 +111,13 @@ def video_page(request, course_id, video_id):
     else:
         return redirect('home')
 
+@login_required
+def notes_update(request,course_id):
+    course=Course.objects.get(id=course_id)
+    if request.method=='POST':
+        notes=request.POST['notes']
+        course.notes=notes
+        course.save()
+        return HttpResponse('success')
+    else:
+        return redirect('home')
