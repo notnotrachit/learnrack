@@ -67,7 +67,7 @@ def new_course(request):
             video_ids=video_ids)
         return HttpResponse('success')
     else:
-        return redirect('home')
+        return redirect('dashboard')
 
 
 @login_required
