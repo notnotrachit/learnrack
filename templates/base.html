@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LearnRack</title>
+    {% include  'css.html' %}
 </head>
 <body>
     <div class="intro">
@@ -18,15 +18,10 @@
     </div>
     <div class="e"><h4>LearnRack</h4></div>
     <div class="searchBox">
-
-
         </button>
     </div>
     <header>
          <!-- <h4>LearnRack</h4> -->
-
-
-
         <a class="logo" href="/"><img src="images/logo.svg" alt="logo"></a>
             <nav>
                 <ul class="nav__links">
@@ -43,6 +38,7 @@
     </header>
 
 
+
     <div id="mobile__menu" class="overlay">
         <a class="close">&times;</a>
         <div class="overlay__content">
@@ -51,9 +47,48 @@
             <a href="#">About</a>
         </div>
     </div>
-    <script type="text/javascript" src="mobile.js"></script>
+    {% block 'content' %}
+    {% endblock %}
+    <script type="text/javascript">
+        const doc = document;
+        const menuOpen = doc.querySelector(".menu");
+        const menuClose = doc.querySelector(".close");
+        const overlay = doc.querySelector(".overlay");
+        
+        menuOpen.addEventListener("click", () => {
+          overlay.classList.add("overlay--active");
+        });
+        
+        menuClose.addEventListener("click", () => {
+          overlay.classList.remove("overlay--active");
+        });
+    </script>
+    <script type="text/javascript">
+        let intro = document.querySelector('.intro');
+        let logo = document.querySelector('.logo-header')
+        let logoSpan = document.querySelectorAll('.logo')
+        window.addEventListener("DOMContentLoaded", ()=>{
+            setTimeout(()=>{
+                logoSpan.forEach((span, idx)=>{
+                    setTimeout(()=>{
+                        span.classList.add('active');
+                    }, (idx + 1) * 400)
+                    
+                });
+                setTimeout(()=>{
+                    logoSpan.forEach((span, idx)=>{
+                        setTimeout(()=>{
+                            span.classList.remove('active');
+                            span.classList.add('fade');
+                        },(idx+1)*50)
+                    })
+                },2000);
 
-
-    <script src="app.js"></script>
+                setTimeout(()=>{
+                    intro.style.top='-100vh';
+                },2300)
+            })
+        })
+    </script>
 </body>
 </html>
