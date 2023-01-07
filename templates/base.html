@@ -11,15 +11,6 @@
     {% include  'css.html' %}
 </head>
 <body>
-    <div class="intro">
-        <h1 class="logo-header">
-            <span class="logo">Learn</span><span class="logo">Rack</span>
-        </h1>
-    </div>
-    <div class="e"><h4>LearnRack</h4></div>
-    <div class="searchBox">
-        </button>
-    </div>
     <header>
          <!-- <h4>LearnRack</h4> -->
         <a class="logo" href="/"><img src="images/logo.svg" alt="logo"></a>
@@ -36,7 +27,7 @@
             <p class="menu cta">Menu</p>
 
     </header>
-
+    <div class="e"><h4>LearnRack</h4></div>
 
 
     <div id="mobile__menu" class="overlay">
@@ -49,46 +40,6 @@
     </div>
     {% block 'content' %}
     {% endblock %}
-    <script type="text/javascript">
-        const doc = document;
-        const menuOpen = doc.querySelector(".menu");
-        const menuClose = doc.querySelector(".close");
-        const overlay = doc.querySelector(".overlay");
-        
-        menuOpen.addEventListener("click", () => {
-          overlay.classList.add("overlay--active");
-        });
-        
-        menuClose.addEventListener("click", () => {
-          overlay.classList.remove("overlay--active");
-        });
-    </script>
-    <script type="text/javascript">
-        let intro = document.querySelector('.intro');
-        let logo = document.querySelector('.logo-header')
-        let logoSpan = document.querySelectorAll('.logo')
-        window.addEventListener("DOMContentLoaded", ()=>{
-            setTimeout(()=>{
-                logoSpan.forEach((span, idx)=>{
-                    setTimeout(()=>{
-                        span.classList.add('active');
-                    }, (idx + 1) * 400)
-                    
-                });
-                setTimeout(()=>{
-                    logoSpan.forEach((span, idx)=>{
-                        setTimeout(()=>{
-                            span.classList.remove('active');
-                            span.classList.add('fade');
-                        },(idx+1)*50)
-                    })
-                },2000);
 
-                setTimeout(()=>{
-                    intro.style.top='-100vh';
-                },2300)
-            })
-        })
-    </script>
 </body>
 </html>

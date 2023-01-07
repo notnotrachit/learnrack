@@ -16,9 +16,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from .views import dashboard
+from courses.views import new_course_page
 
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('dashboard/', dashboard, name='dashboard'),
+    path('new_courses/', new_course_page, name='new_course_page'),
 ]

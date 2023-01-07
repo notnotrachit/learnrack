@@ -34,6 +34,11 @@ def video_list(PLAYLIST_ID):
             break
     return video_ids
 
+
+@login_required
+def new_course_page(request):
+    return render(request, 'new_course.html')
+
 @login_required
 def new_course(request):
     user=request.user
@@ -59,8 +64,7 @@ def new_course(request):
             description=description,
             channel_name=channel_name,
             thumbnail_url=thumbnail_url,
-            video_ids=video_ids,
-            tag=tag)
+            video_ids=video_ids)
         return HttpResponse('success')
     else:
         return redirect('home')
