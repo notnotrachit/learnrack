@@ -10,6 +10,7 @@ import http.client
 import json
 # Create your views here.
 def video_list(PLAYLIST_ID):
+    youtube = build('youtube', 'v3', developerKey=os.environ.get('YOUTUBE_API_KEY'),static_discovery=False)
     request_params = {
         'playlistId': PLAYLIST_ID,
         'part': 'snippet',
@@ -42,9 +43,7 @@ def new_course_page(request):
 @login_required
 def new_course(request):
     youtube = build('youtube', 'v3', developerKey=os.environ.get('YOUTUBE_API_KEY'),static_discovery=False)
-
     user=request.user
-    print(request.POST)
     if request.method=='POST':
         url=request.POST['url']
         playlist_id=url.replace('https://www.youtube.com/playlist?list=', '')
@@ -58,7 +57,7 @@ def new_course(request):
         description=response['items'][0]['snippet']['description']
         thumbnail_url=response['items'][0]['snippet']['thumbnails']['high']['url']
         channel_name=response['items'][0]['snippet']['channelTitle']
-        course=Course.objects.create(
+        Course.objects.create(
             url=url,
             playlist_id=playlist_id,
             user=user,
