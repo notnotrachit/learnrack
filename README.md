@@ -1,15 +1,16 @@
 
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
+![Logo](images/learnrack.png)
 
 
-# LearnRack
+# [LearnRack](https://learnrack.study)
+[learnrack.study](https://learnrack.study)
 
 YouTube is a popular platform that many people use to access educational resources, but it was not designed specifically for learning. One of the drawbacks of using YouTube for learning is that it does not offer features to track progress in real-time or provide visual motivation through tools like bar graphs. Additionally, the suggested videos that appear on the side of the page can be a distraction and disrupt the learner's focus. LearnRack is a platform that was created to address these issues and enhance the learning experience. It is specifically designed to optimize the learning process and provide a more focused, effective and enjoyable way to study.
 
 
 
 
-## 🚀 About Team
+## About Team
 Yash Singh - https://github.com/yashsinghhh  
 Rachit Khurana - https://github.com/notnotrachit  
 Pratibha Dureja- https://github.com/pratibhadureja  
@@ -35,50 +36,47 @@ Vasvi Garg - https://github.com/vasvigarg
 
 
 
-## API Reference
+## API Used
+* Apy Generate : HTML Content to PDF
 
-#### Get all items
+## Run Locally
 
-```http
-  GET /api/items
-```
+To deploy this project
+1.  Install the dependencies
+    `pip install -r requirements.txt`
+2. Add env variables
+3.  Run database migrations
+    `python manage.py migrate`
+4.  Create superuser
+    `python manage.py createsuperuser`
+5.  Collect Static
+    `python manage.py collectstatic`
+6.  Run server
+    `python manage.py runserver`
 
-| Parameter | Type     | Description                |
-| :-------- | :------- | :------------------------- |
-| `api_key` | `string` | **Required**. Your API key |
+## Environment Variables
 
-#### Get item
-
-```http
-  GET /api/items/${id}
-```
-
-| Parameter | Type     | Description                       |
-| :-------- | :------- | :-------------------------------- |
-| `id`      | `string` | **Required**. Id of item to fetch |
-
-#### add(num1, num2)
-
-Takes two numbers and returns the sum.
-
-
-## Deployment
-
-To deploy this project run
-
-```bash
-  npm run deploy
-```
-
-
+To run this project, you will need to add the following environment variables to your .env file
+* AUTH0_CLIENT_ID
+* AUTH0_CLIENT_SECRET
+* AUTH0_DOMAIN
+* YOUTUBE_API_KEY
+* APY_TOKEN
+* db_username
+* db_name
+* db_password
+* db_host
+* db_port
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![](images/ss1.png)
+![](images/ss2.png)
+![](images/ss3.png)
+![](images/ss4.png)
 
 
 ## Contributing
 
 Contributions are always welcome!
 
-Please adhere to this project's `code of conduct`.
 
