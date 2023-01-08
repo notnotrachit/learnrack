@@ -8,7 +8,6 @@ from dotenv import load_dotenv
 load_dotenv()
 import http.client
 import json
-youtube = build('youtube', 'v3', developerKey=os.environ.get('YOUTUBE_API_KEY'),static_discovery=False)
 # Create your views here.
 def video_list(PLAYLIST_ID):
     request_params = {
@@ -42,6 +41,8 @@ def new_course_page(request):
 
 @login_required
 def new_course(request):
+    youtube = build('youtube', 'v3', developerKey=os.environ.get('YOUTUBE_API_KEY'),static_discovery=False)
+
     user=request.user
     print(request.POST)
     if request.method=='POST':
@@ -140,6 +141,7 @@ def video_watch(request, course_id, video_id):
 
 @login_required
 def video_page(request, course_id, video_id):
+    youtube = build('youtube', 'v3', developerKey=os.environ.get('YOUTUBE_API_KEY'),static_discovery=False)
     course=Course.objects.get(id=course_id)
     if video_id in course.video_ids:
         request_f = youtube.videos().list(
